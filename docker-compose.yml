@@ -1,0 +1,39 @@
+version: '3'
+services:
+  app:
+    container_name: sherlock-holmes
+    image: behive/sherlock-holmes
+    build: .
+    volumes:
+      - ".:/app"
+    ports:
+      - 3000:3000
+    networks:
+      - bridge
+    environment:
+      - SANIC_PORT=3000
+      - SANIC_ELASTICSEARCH_HOST=elasticsearch
+      - SANIC_ELASTICSEARCH_PORT=9200
+    depends_on:
+      - elasticsearch
+  elasticsearch:
+    image: docker.elastic.co/elasticsearch/elasticsearch:6.2.3
+    container_name: sherlock-elasticsearch
+    environment:
+      - cluster.name=docker-cluster
+      - bootstrap.memory_lock=true
+      - "ES_JAVA_OPTS=-Xms512m -Xmx512m"
+    ulimits:
+      memlock:
+        soft: -1
+        hard: -1
+    volumes:
+      - esdata:/usr/share/elasticsearch/data
+    ports:
+      - 3002:9200
+    networks:
+      - bridge
+volumes:
+  esdata:
+networks:
+  bridge:
