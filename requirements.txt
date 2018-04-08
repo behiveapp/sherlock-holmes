@@ -1,3 +1,4 @@
+graphene
 Sanic
 Sanic-GraphQl
 Elasticsearch
