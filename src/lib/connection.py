@@ -1,4 +1,4 @@
+import os
 from elasticsearch import Elasticsearch
 
-def es(env):
-  return Elasticsearch('{0}:{1}'.format(env.ELASTICSEARCH_HOST, env.ELASTICSEARCH_PORT))
+es = Elasticsearch('{0}:{1}'.format(os.environ['SANIC_ELASTICSEARCH_HOST'], os.environ['SANIC_ELASTICSEARCH_PORT']))
