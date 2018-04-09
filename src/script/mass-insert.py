@@ -13,6 +13,7 @@ third_name_parts = ['SA', 'LTDA', 'Eirelli', 'MEI']
 
 product_codes = ['code01', 'code02', 'code03', 'code04', 'code05']
 product_names = ['Produto legal', 'Produto bacana', 'Produto show', 'Produto bonito', 'Produto grande', 'Produto pequeno', 'Produto feio', 'Produto caro', 'Produto barato', 'Produto chato', 'Produto inovador', 'Produto novo', 'Produto antigo', 'Produto velho', 'Produto Bahia', 'Produto Joe']
+product_categories = ['Culinária', 'Culinária Francesa', 'Culinária Italiana', 'Roupas e Acessórios', 'Ferramentas', 'Instrumentos Musicais']
 
 for identifier in identifiers:
   short_name = "{0} {1}".format(random.choice(first_name_parts), random.choice(second_name_parts))
@@ -27,7 +28,8 @@ for identifier in identifiers:
     es.index(index='products', doc_type='products', body= {
       "seller_identifier": identifier,
       "code": code,
-      "name": random.choice(product_names)
+      "name": random.choice(product_names),
+      "categories": [random.choice(product_categories), random.choice(product_categories)]
     })
 
 
