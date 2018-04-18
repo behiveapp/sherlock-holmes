@@ -5,9 +5,10 @@ from lib.model import ProductModel
 
 def get_seller(hit):
   data = hit['_source']
-  return Seller(identifier=data['identifier'], shortName=data['short_name'], fullName=data['full_name'])
+  return Seller(id=data['id'], identifier=data['identifier'], shortName=data['short_name'], fullName=data['full_name'])
 
 class Seller(graphene.ObjectType):
+  id = graphene.String()
   identifier = graphene.String()
   shortName = graphene.String()
   fullName = graphene.String()
